@@ -119,6 +119,8 @@
 
 /* ---------- правая колонка: надпись + фото одним блоком ---------- */
 .hero__media { display: grid; gap: 16px; }
+/* подпись над фото («ОТЕЧЕСТВЕННЫЕ АВТОМОБИЛИ» и строка под ней) — по центру */
+#hero-caption { text-align: center; }
 
 .hero__caption-title {
   display: block;
