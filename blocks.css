@@ -55,12 +55,19 @@
 
 /* ---------- левая колонка ---------- */
 .hero__title { font-size: var(--fs-display); letter-spacing: -0.038em; text-wrap: balance; }
-/* Заголовок «Автоберлоги» разбит на 3 строки вручную (\n в content.js).
-   Шрифт подобран так, чтобы самая длинная строка «Ремонт авто в Ростове»
-   (≈10.7 кегля в ширину) не переносилась: на телефоне от ширины экрана,
-   на десктопе от ширины левой колонки. */
-.hero__title { font-size: min(calc((100vw - 40px) / 11.4), 3.3rem); text-wrap: wrap; }
-@media (min-width: 1024px) { .hero__title { font-size: min(3.75vw, 3.3rem); } }
+/* Заголовок «Автоберлоги» — 2 строки вручную (\n в content.js).
+   Ширина строк в кеглях: «Ремонт авто в Ростове» ≈ 10.7,
+   «Диагностика в день обращения» ≈ 15.3. Шрифт считается так, чтобы
+   строки не переносились сами:
+   - телефон (<600): вторая строка делится на две (br-phone), самая
+     длинная — первая, шрифт крупный;
+   - планшет: 2 строки от ширины экрана;
+   - десктоп: 2 строки от ширины левой колонки. */
+.hero__title { font-size: calc((100vw - 40px) / 11.4); text-wrap: wrap; }
+.br-phone { display: none; }
+@media (max-width: 599px) { .br-phone { display: inline; } }
+@media (min-width: 600px) { .hero__title { font-size: min(5.6vw, 3.3rem); } }
+@media (min-width: 1024px) { .hero__title { font-size: min(2.6vw, 3.3rem); } }
 .hero__engines {
   display: block;
   margin-top: 16px;
@@ -1078,7 +1085,9 @@ a.review:hover .review__foot { color: var(--text-muted); }
   font-weight: 700;
   letter-spacing: -0.035em;
 }
-@media (min-width: 760px) { .form__lead { white-space: nowrap; } }
+/* У «Автоберлоги» заголовок формы длиннее шаблонного: одной строкой
+   он помещается только с широкого экрана, на планшете переносится. */
+@media (min-width: 1100px) { .form__lead { white-space: nowrap; } }
 
 .form__submit {
   height: auto; min-height: 62px;
