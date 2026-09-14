@@ -55,6 +55,12 @@
 
 /* ---------- левая колонка ---------- */
 .hero__title { font-size: var(--fs-display); letter-spacing: -0.038em; text-wrap: balance; }
+/* Заголовок «Автоберлоги» разбит на 3 строки вручную (\n в content.js).
+   Шрифт подобран так, чтобы самая длинная строка «Ремонт авто в Ростове»
+   (≈10.7 кегля в ширину) не переносилась: на телефоне от ширины экрана,
+   на десктопе от ширины левой колонки. */
+.hero__title { font-size: min(calc((100vw - 40px) / 11.4), 3.3rem); text-wrap: wrap; }
+@media (min-width: 1024px) { .hero__title { font-size: min(3.75vw, 3.3rem); } }
 .hero__engines {
   display: block;
   margin-top: 16px;

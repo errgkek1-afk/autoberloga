@@ -220,7 +220,7 @@
       '<div class="wrap hero__inner">' +
 
         '<div class="hero__text">' +
-          '<h1 class="hero__title">' + esc(h.title) +
+          '<h1 class="hero__title">' + esc(h.title).replace(/\n/g, '<br>') +
             (h.engines ? '<span class="hero__engines">' + esc(h.engines) + '</span>' : '') +
           '</h1>' +
           (h.showTerm === false ? '' : '<p class="hero__term roll" id="hero-term" aria-live="polite"></p>') +
