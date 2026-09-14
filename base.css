@@ -184,6 +184,19 @@ a[data-no-phone] { cursor: default; }
 .logo__sub { display: none; font-size: var(--fs-xs); color: var(--text-muted); white-space: nowrap; }
 @media (min-width: 560px) { .logo__sub { display: block; } }
 
+/* Телефон: логотип и название «Автоберлога» — по центру шапки и крупнее.
+   Бургер остаётся справа. Касается только шапки, подвал не трогаем. */
+@media (max-width: 767px) {
+  .header .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 10px;
+  }
+  .header .logo__img { height: 44px; }
+  .header .logo__title { font-size: 1.2rem; font-weight: 700; }
+}
+
 /* Меню в потоке между логотипом и правым блоком.
    У «Автоберлоги» правый блок шире (ежедневный график + длинный номер),
    поэтому абсолютное центрирование наезжало на график — здесь меню
