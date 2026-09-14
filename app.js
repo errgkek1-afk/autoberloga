@@ -221,17 +221,17 @@
 
         '<div class="hero__text">' +
           '<h1 class="hero__title">' + esc(h.title) +
-            '<span class="hero__engines">' + esc(h.engines) + '</span>' +
+            (h.engines ? '<span class="hero__engines">' + esc(h.engines) + '</span>' : '') +
           '</h1>' +
-          '<p class="hero__term roll" id="hero-term" aria-live="polite"></p>' +
+          (h.showTerm === false ? '' : '<p class="hero__term roll" id="hero-term" aria-live="polite"></p>') +
           '<ul class="hero__hooks">' + hooks + '</ul>' +
           '<div class="hero__actions">' +
             '<a class="btn btn--cta" href="' + wa + '"' + deadAttr(wa) + '>' +
               esc(h.cta) + ic('arrow', { size: 18 }) + '</a>' +
-            '<p class="hero__counter">' +
+            (h.counterLabel ? '<p class="hero__counter">' +
               '<b id="hero-counter">' + fmt(installCount()) + '</b>' +
               '<span>' + esc(h.counterLabel) + '</span>' +
-            '</p>' +
+            '</p>' : '') +
           '</div>' +
         '</div>' +
 
@@ -818,13 +818,13 @@
     }
     function capHtml(st) {
       return '<span class="hero__caption-title">' + esc(st.caption) + '</span>' +
-             '<span class="hero__caption-sub">' + esc(st.sub) + '</span>';
+             (st.sub ? '<span class="hero__caption-sub">' + esc(st.sub) + '</span>' : '');
     }
 
     function paint(i) {
       var st = states[i];
       slides.forEach(function (el, k) { el.classList.toggle('is-active', k === i); });
-      roll(termBox, termHtml(st));
+      if (termBox) roll(termBox, termHtml(st));
       roll(capBox, capHtml(st));
     }
 
@@ -858,7 +858,7 @@
 
     /* высота под самый длинный вариант — чтобы блок не дёргался при смене */
     var fit = function () {
-      reserveHeight(termBox, states.map(termHtml));
+      if (termBox) reserveHeight(termBox, states.map(termHtml));
       reserveHeight(capBox, states.map(capHtml));
     };
     fit();
